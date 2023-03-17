@@ -8,14 +8,14 @@ import { toast } from 'react-toastify'
 import { getNotes, reset } from '../features/notes/noteSlice'
 import NoteItem from '../components/NoteItem'
 
-function Dashboard() {
+function Notes() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const {user } = useSelector((state) => state.auth)
+    const { user } = useSelector((state) => state.auth)
 
-    const { notes, isLoading, isError, message, isSuccess } = useSelector((state) => state.notes)
+    const { notes, isLoading, isError, message } = useSelector((state) => state.notes)
 
     useEffect(() => {
         if(isError) {
@@ -40,8 +40,8 @@ function Dashboard() {
   return (
     <>
     <section className="heading">
-        <h1>Welcome {user && user.name}</h1>
-        <p>Home</p>
+        <h1>Your Notes</h1>
+        <p>Notes Dashboard</p>
     </section>
     <NoteForm />
 
@@ -60,4 +60,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default Notes

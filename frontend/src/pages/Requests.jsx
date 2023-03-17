@@ -2,20 +2,20 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import NoteForm from '../components/NoteForm'
+import RequestForm from '../components/RequestForm'
 import Spinner from '../components/Spinner'
 import { toast } from 'react-toastify'
-import { getNotes, reset } from '../features/notes/noteSlice'
-import NoteItem from '../components/NoteItem'
+import { getRequests, reset } from '../features/requests/requestSlice'
+import RequestItem from '../components/RequestItem'
 
-function Dashboard() {
+function Requests() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const {user } = useSelector((state) => state.auth)
+    const { user } = useSelector((state) => state.auth)
 
-    const { notes, isLoading, isError, message, isSuccess } = useSelector((state) => state.notes)
+    const { requests, isLoading, isError, message } = useSelector((state) => state.requests)
 
     useEffect(() => {
         if(isError) {
@@ -25,7 +25,7 @@ function Dashboard() {
             navigate('/login')
         }
 
-        dispatch(getNotes())
+        dispatch(getRequests())
 
         return () => {
             dispatch(reset())
@@ -40,24 +40,24 @@ function Dashboard() {
   return (
     <>
     <section className="heading">
-        <h1>Welcome {user && user.name}</h1>
-        <p>Home</p>
+        <h1>Manage Requests</h1>
+        <p>How can we help you today?</p>
     </section>
-    <NoteForm />
+    <RequestForm />
 
     <section className="content">
-        {notes.length > 0 ? (
-            <div className = "notes"> 
-                {notes.map((note) => (
-                    <NoteItem key={note._id} note={note} />
+        {requests.length > 0 ? (
+            <div className = "requests"> 
+                {requests.map((request) => (
+                    <RequestItem key={request._id} request={request} />
             ))}
             </div>
         ) :
-        (<h2>No notes</h2>)
+        (<h2>No Active Requests</h2>)
         }
     </section>
     </>
   )
 }
 
-export default Dashboard
+export default Requests
