@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 import { getRequests, reset } from '../features/requests/requestSlice'
 import RequestItem from '../components/RequestItem'
 
-function Requests() {
+function PastRequests() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -40,27 +40,16 @@ function Requests() {
   return (
     <>
     <section className="heading">
-        <h1>Manage Requests</h1>
-        <p>How can we help you today?</p>
+        <h1>Past Requests</h1>
+        <p>Old requests that have been completed or cancelled</p>
     </section>
-    <RequestForm />
-{/* 
+
+
     <section className="content">
-        {requests.length > 0 ? (
-            <div className = "requests"> 
-                {requests.map((request) => (
-                    <RequestItem key={request._id} request={request} />
-            ))}
-            </div>
-        ) :
-        (<h2>No Active Requests</h2>)
-        }
-    </section> */}
-    <section className="content">
-  {requests.filter(request => request.status === "active").length > 0 ? (
+  {requests.filter(request => request.status !== "active").length > 0 ? (
     <div className="requests">
       {requests
-        .filter(request => request.status === "active")
+        .filter(request => request.status !== "active")
         .map(request => (
           <RequestItem key={request._id} request={request} />
         ))}
@@ -73,4 +62,4 @@ function Requests() {
   )
 }
 
-export default Requests
+export default PastRequests

@@ -34,6 +34,10 @@ function Header() {
         navigate('/requests')
     }
 
+    const onMedication = () => {
+        navigate('/medications')
+    }
+
   return (
     <header className = "header">
     <div className = "logo">
@@ -55,6 +59,9 @@ function Header() {
             </button>
             <button className='btn' onClick = {onRequests}>
                 <FaUser /> Requests
+            </button>
+            <button className='btn' onClick = {onMedication}>
+                <FaUser /> Medication
             </button>
         </li>) : (<>
         <li>

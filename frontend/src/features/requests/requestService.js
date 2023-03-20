@@ -41,6 +41,7 @@ const deleteRequest = async (requestId, token) => {
 // Update request status
 const updateRequest = async (requestId, status, token) => {
   console.log("hello from service");
+  // console.log(status); this is undefined for some reason
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -50,10 +51,28 @@ const updateRequest = async (requestId, status, token) => {
   // const response = await axios.put(url, { status }, config);
   // console.log("words");
   // return response.data;
-  const { data } = await axios.put(url, { status }, config);
+  const { data } = await axios.put(url, { status: "cancelled" }, config);
   console.log("words");
   return data;
 };
+// // Update request status
+// const updateRequest = async (requestId, requestStatus, token) => {
+//   console.log("hello from service");
+//   console.log(requestStatus);
+//   const config = {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   };
+//   const url = API_URL + requestId;
+//   // const response = await axios.put(url, { status }, config);
+//   // console.log("words");
+//   // return response.data;
+//   const { data } = await axios.put(url, { requestStatus }, config);
+//   console.log("words");
+//   // console.log(status);
+//   return data;
+// };
 
 const requestService = {
   createRequest,

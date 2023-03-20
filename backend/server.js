@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/requests", require("./routes/requestRoutes"));
 app.use("/api/notes", require("./routes/noteRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/medications", require("./routes/medicationRoutes"));
 
 app.use(errorHandler);
 

@@ -85,6 +85,31 @@ export const updateRequest = createAsyncThunk(
   }
 );
 
+// //update request status
+// export const updateRequest = createAsyncThunk(
+//   "requests/update",
+//   console.log("updateRequest"),
+//   async ({ id, requestStatus }, thunkAPI) => {
+//     try {
+//       const token = thunkAPI.getState().auth.user.token;
+//       // console.log(requestData.status);
+//       return await requestService.updateRequest(
+//         id,
+//         requestStatus.status,
+//         token
+//       );
+//     } catch (error) {
+//       const message =
+//         (error.response &&
+//           error.response.data &&
+//           error.response.data.message) ||
+//         error.message ||
+//         error.toString();
+//       return thunkAPI.rejectWithValue(message);
+//     }
+//   }
+// );
+
 export const requestSlice = createSlice({
   name: "request",
   initialState,

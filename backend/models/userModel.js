@@ -14,6 +14,12 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add a password"],
     },
+    // different roles for different users (staff vs patient)
+    role: {
+      type: String,
+      enum: ["patient", "staff"],
+      default: "patient",
+    },
   },
 
   {

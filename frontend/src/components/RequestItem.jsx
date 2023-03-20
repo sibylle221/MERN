@@ -74,7 +74,21 @@ function RequestItem({ request }) {
 
   const [status, setStatus] = useState(request.status);
 
-  const onCancel = async () => {
+//   const onCancel = async () => {
+//     try {
+//       const updatedRequest = await dispatch(updateRequest({
+//         id: request._id,
+//         status: "cancelled"
+//       })).unwrap();
+//       setStatus(updatedRequest.status);
+//       console.log (updatedRequest)
+      
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+
+const onCancel = async () => {
     try {
       const updatedRequest = await dispatch(updateRequest({
         id: request._id,
