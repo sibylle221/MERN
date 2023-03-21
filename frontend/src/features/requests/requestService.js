@@ -39,7 +39,7 @@ const deleteRequest = async (requestId, token) => {
 };
 
 // Update request status
-const updateRequest = async (requestId, status, token) => {
+const cancelRequest = async (requestId, status, token) => {
   console.log("hello from service");
   // console.log(status); this is undefined for some reason
   const config = {
@@ -55,30 +55,66 @@ const updateRequest = async (requestId, status, token) => {
   console.log("words");
   return data;
 };
-// // Update request status
-// const updateRequest = async (requestId, requestStatus, token) => {
-//   console.log("hello from service");
-//   console.log(requestStatus);
-//   const config = {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   };
-//   const url = API_URL + requestId;
-//   // const response = await axios.put(url, { status }, config);
-//   // console.log("words");
-//   // return response.data;
-//   const { data } = await axios.put(url, { requestStatus }, config);
-//   console.log("words");
-//   // console.log(status);
-//   return data;
-// };
+
+// complete request status
+const completeRequest = async (requestId, status, token) => {
+  console.log("hello from service");
+  // console.log(status); this is undefined for some reason
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const url = API_URL + requestId;
+  // const response = await axios.put(url, { status }, config);
+  // console.log("words");
+  // return response.data;
+  const { data } = await axios.put(url, { status: "completed" }, config);
+  console.log("words");
+  return data;
+};
+
+// Update request status
+const activateRequest = async (requestId, status, token) => {
+  console.log("hello from service");
+  // console.log(status); this is undefined for some reason
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const url = API_URL + requestId;
+  const { data } = await axios.put(url, { status: "active" }, config);
+  console.log("words");
+  return data;
+};
+
+// Update request status
+const pendingRequest = async (requestId, status, token) => {
+  console.log("hello from service");
+  // console.log(status); this is undefined for some reason
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const url = API_URL + requestId;
+  // const response = await axios.put(url, { status }, config);
+  // console.log("words");
+  // return response.data;
+  const { data } = await axios.put(url, { status: "pending" }, config);
+  console.log("words");
+  return data;
+};
 
 const requestService = {
   createRequest,
   getRequests,
   deleteRequest,
-  updateRequest,
+  cancelRequest,
+  pendingRequest,
+  completeRequest,
+  activateRequest,
 };
 
 export default requestService;

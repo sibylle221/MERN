@@ -33,11 +33,119 @@ const setRequest = asyncHandler(async (req, res) => {
   res.status(200).json(request);
 });
 
-// @desc Update request
+// @desc Cancel request
 // @route PUT /api/requests/:id
 // @access Private
 
-const updateRequest = asyncHandler(async (req, res) => {
+const cancelRequest = asyncHandler(async (req, res) => {
+  const request = await Request.findById(req.params.id);
+  if (!request) {
+    res.status(404);
+    throw new Error("Request not found");
+  }
+
+  if (!req.user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+  // make sure request is owned by user
+  if (request.user.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error("Not authorized to update request");
+  }
+  try {
+    const updatedRequest = await Request.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+
+      {
+        new: true,
+      }
+    );
+
+    res.status(200).json(updatedRequest);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to update request" });
+  }
+});
+
+// @desc Complete request
+// @route PUT /api/requests/:id
+// @access Private
+
+const completeRequest = asyncHandler(async (req, res) => {
+  const request = await Request.findById(req.params.id);
+  if (!request) {
+    res.status(404);
+    throw new Error("Request not found");
+  }
+
+  if (!req.user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+  // make sure request is owned by user
+  if (request.user.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error("Not authorized to update request");
+  }
+  try {
+    const updatedRequest = await Request.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+
+      {
+        new: true,
+      }
+    );
+
+    res.status(200).json(updatedRequest);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to update request" });
+  }
+});
+
+// @desc reactivate request
+// @route PUT /api/requests/:id
+// @access Private
+
+const activateRequest = asyncHandler(async (req, res) => {
+  const request = await Request.findById(req.params.id);
+  if (!request) {
+    res.status(404);
+    throw new Error("Request not found");
+  }
+
+  if (!req.user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+  // make sure request is owned by user
+  if (request.user.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error("Not authorized to update request");
+  }
+  try {
+    const updatedRequest = await Request.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+
+      {
+        new: true,
+      }
+    );
+
+    res.status(200).json(updatedRequest);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to update request" });
+  }
+});
+
+// @desc Pending request
+// @route PUT /api/requests/:id
+// @access Private
+
+const pendingRequest = asyncHandler(async (req, res) => {
   const request = await Request.findById(req.params.id);
   if (!request) {
     res.status(404);
@@ -99,4 +207,12 @@ const deleteRequest = asyncHandler(async (req, res) => {
   res.status(200).json({ id: req.params.id });
 });
 
-module.exports = { getRequests, setRequest, updateRequest, deleteRequest };
+module.exports = {
+  getRequests,
+  setRequest,
+  cancelRequest,
+  completeRequest,
+  deleteRequest,
+  pendingRequest,
+  activateRequest,
+};

@@ -1,7 +1,7 @@
 // import React from 'react'
 // import {useDispatch} from 'react-redux'
 // import { useState } from 'react'
-// import { updateRequest} from '../features/requests/requestSlice'
+// import { cancelRequest} from '../features/requests/requestSlice'
 
 
 // function RequestItem( {request}) {
@@ -10,7 +10,7 @@
 //     console.log (request.status)
 //     const onCancel = e => {
 //         e.preventDefault()
-//         dispatch(updateRequest({status}))
+//         dispatch(cancelRequest({status}))
 //         setStatus('')
 //     }
     
@@ -32,7 +32,7 @@
 //             {request.status}
 //         </h2>
 
-//         {/* <button value = "cancelled" onClick = { () => dispatch(updateRequest(request._id)) } className="cancel"> */}
+//         {/* <button value = "cancelled" onClick = { () => dispatch(cancelRequest(request._id)) } className="cancel"> */}
 //         <button>
 //         <input type='button' name='status' id='status' value = {status}
 //                     onChange = {(e) => setStatus ("cancelled")} />

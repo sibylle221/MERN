@@ -43,7 +43,7 @@ function Dashboard() {
         <h1>Welcome {user && user.name}</h1>
         <p>Home</p>
     </section>
-    <NoteForm />
+    {/* <NoteForm /> */}
 
     <section className="content">
         {notes.length > 0 ? (

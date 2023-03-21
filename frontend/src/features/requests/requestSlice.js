@@ -67,12 +67,12 @@ export const deleteRequest = createAsyncThunk(
 );
 
 //update request status
-export const updateRequest = createAsyncThunk(
-  "requests/update",
+export const cancelRequest = createAsyncThunk(
+  "requests/cancel",
   async ({ id, requestStatus }, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await requestService.updateRequest(id, requestStatus, token);
+      return await requestService.cancelRequest(id, requestStatus, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -85,37 +85,67 @@ export const updateRequest = createAsyncThunk(
   }
 );
 
-// //update request status
-// export const updateRequest = createAsyncThunk(
-//   "requests/update",
-//   console.log("updateRequest"),
-//   async ({ id, requestStatus }, thunkAPI) => {
-//     try {
-//       const token = thunkAPI.getState().auth.user.token;
-//       // console.log(requestData.status);
-//       return await requestService.updateRequest(
-//         id,
-//         requestStatus.status,
-//         token
-//       );
-//     } catch (error) {
-//       const message =
-//         (error.response &&
-//           error.response.data &&
-//           error.response.data.message) ||
-//         error.message ||
-//         error.toString();
-//       return thunkAPI.rejectWithValue(message);
-//     }
-//   }
-// );
+export const completeRequest = createAsyncThunk(
+  "requests/complete",
+  async ({ id, requestStatus }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await requestService.completeRequest(id, requestStatus, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const activateRequest = createAsyncThunk(
+  "requests/activate",
+  async ({ id, requestStatus }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await requestService.activateRequest(id, requestStatus, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+//pending request status
+export const pendingRequest = createAsyncThunk(
+  "requests/pending",
+  async ({ id, requestStatus }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await requestService.pendingRequest(id, requestStatus, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 export const requestSlice = createSlice({
   name: "request",
   initialState,
   reducers: {
     reset: (state) => initialState,
-    updateRequestSuccess: (state, action) => {
+    cancelRequestSuccess: (state, action) => {
       const updatedRequest = action.payload;
       const index = state.requests.findIndex(
         (request) => request._id === updatedRequest._id
@@ -176,14 +206,14 @@ export const requestSlice = createSlice({
         state.isLoading = false;
         state.message = action.payload;
       })
-      .addCase(updateRequest.pending, (state) => {
+      .addCase(cancelRequest.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
         state.isSuccess = false;
         state.message = "";
       })
       // case to update request status
-      .addCase(updateRequest.fulfilled, (state, action) => {
+      .addCase(cancelRequest.fulfilled, (state, action) => {
         state.isError = false;
         state.isSuccess = true;
         state.isLoading = false;
@@ -193,7 +223,70 @@ export const requestSlice = createSlice({
         );
         // state.requests.put(action.payload);
       })
-      .addCase(updateRequest.rejected, (state, action) => {
+      .addCase(cancelRequest.rejected, (state, action) => {
+        state.isError = true;
+        state.isSuccess = false;
+        state.isLoading = false;
+        state.message = action.payload;
+      })
+      .addCase(completeRequest.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
+        state.message = "";
+      })
+      .addCase(completeRequest.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isSuccess = true;
+        state.isLoading = false;
+        state.message = action.payload.message;
+        state.requests = state.requests.map((request) =>
+          request._id === action.payload._id ? action.payload : request
+        );
+      })
+      .addCase(completeRequest.rejected, (state, action) => {
+        state.isError = true;
+        state.isSuccess = false;
+        state.isLoading = false;
+        state.message = action.payload;
+      })
+      .addCase(activateRequest.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
+        state.message = "";
+      })
+      .addCase(activateRequest.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isSuccess = true;
+        state.isLoading = false;
+        state.message = action.payload.message;
+        state.requests = state.requests.map((request) =>
+          request._id === action.payload._id ? action.payload : request
+        );
+      })
+      .addCase(activateRequest.rejected, (state, action) => {
+        state.isError = true;
+        state.isSuccess = false;
+        state.isLoading = false;
+        state.message = action.payload;
+      })
+      .addCase(pendingRequest.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
+        state.message = "";
+      })
+      .addCase(pendingRequest.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isSuccess = true;
+        state.isLoading = false;
+        state.message = action.payload.message;
+        state.requests = state.requests.map((request) =>
+          request._id === action.payload._id ? action.payload : request
+        );
+      })
+      .addCase(pendingRequest.rejected, (state, action) => {
         state.isError = true;
         state.isSuccess = false;
         state.isLoading = false;

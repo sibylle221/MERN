@@ -16,7 +16,7 @@ const requestSchema = mongoose.Schema(
     status: {
       type: String,
       default: "active",
-      enum: ["active", "completed", "cancelled"],
+      enum: ["active", "completed", "cancelled", "pending"],
       required: [true, "Please add a request status"],
     },
   },

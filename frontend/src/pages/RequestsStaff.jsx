@@ -6,12 +6,9 @@ import RequestForm from '../components/RequestForm'
 import Spinner from '../components/Spinner'
 import { toast } from 'react-toastify'
 import { getRequests, reset } from '../features/requests/requestSlice'
-import RequestItemS from '../components/RequestItemStyled'
-import { Heading, Text } from '@chakra-ui/react'
-import LogoSmall from '../styling/LogoSmall'
+import RequestItemStaff from '../components/RequestItemStaff'
 
-
-function PastRequests() {
+function Requests() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -42,41 +39,35 @@ function PastRequests() {
 
   return (
     <>
-    
-    <Heading
-              fontWeight={600}
-              fontSize={{ base: '2xl', sm: '2xl', md: '2xl' }}
-              lineHeight={'100%'}
-              color = {'#5FA7CF'}   >
-                  <LogoSmall /><br />
-                  <br></br>
-                <Text as={'span'}  fontSize = {'5xl'} color = {'#5FA7CF'}>  
-                Past Requests
-                </Text>
-            </Heading>
     <section className="heading">
-
-        <p>Old requests that have been completed or cancelled</p>
+        <h1>Manage Patient Requests</h1>
+        <p>Current Active Requests</p>
     </section>
 
-
     <section className="content">
-  {requests.filter(request => request.status !== "active").length > 0 ? (
+  {requests.filter(request => request.status === "active").length > 0 ? (
     <div className="requests">
       {requests
-        .filter(request => request.status !== "active")
+        .filter(request => request.status === "active")
         .map(request => (
-          <RequestItemS key={request._id} request={request} />
+          <RequestItemStaff key={request._id} request={request} />
         ))}
     </div>
   ) : (
     <h2>No Active Requests</h2>
   )}
 </section>
+<section className="pending">
+        <h1>In Progress Requests   
+        </h1>
+        {requests
+        .filter(request => request.status === "pending")
+        .map(request => (
+          <RequestItemStaff key={request._id} request={request} />
+        ))}
+        </section>
     </>
   )
 }
 
-export default PastRequests
-
-
+export default Requests
