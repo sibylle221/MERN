@@ -3,13 +3,17 @@ import { useState } from 'react'
 import {useDispatch} from 'react-redux'
 import { createRequest } from '../features/requests/requestSlice'
 import {Button} from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
+
 
 function RequestFormS() {
 
+    const navigate = useNavigate()
     const onSubmit = e => {
         e.preventDefault()
         dispatch(createRequest({text, status: "active"}))
         setText('')
+        navigate ('/requestsStyled')
       
     }
     

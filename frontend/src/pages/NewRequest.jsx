@@ -20,12 +20,13 @@ import person from "../assets/images/person.svg";
   import React from 'react'
   import { useEffect } from 'react'
   
-
+import { useState } from 'react'
 import RequestItemS from '../components/RequestItemStyled';
 import RequestFormS from '../components/RequestFormStyled';
   import Spinner from '../components/Spinner'
   import { toast } from 'react-toastify'
-  import { getRequests, reset } from '../features/requests/requestSlice'
+  import { getRequests, reset, createRequest } from '../features/requests/requestSlice'
+import { createReducer } from '@reduxjs/toolkit';
 //   import RequestItem from '../components/RequestItem'
 
 
@@ -36,9 +37,20 @@ import RequestFormS from '../components/RequestFormStyled';
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-
-
     const { requests, isLoading, isError, message } = useSelector((state) => state.requests)
+
+
+
+    const handleButtonClick = (text) => {
+
+        
+        dispatch(createRequest({text, status: "active"}))
+        navigate('/requestsStyled')
+
+    }
+    
+    const [text, setText ] = useState('')
+
 
     return (
       <>
@@ -50,7 +62,7 @@ import RequestFormS from '../components/RequestFormStyled';
             textAlign={'center'}
             spacing={{ base: 8, md: 10 }}
               
-            py={{ base: 20, md: 5 }}>
+            py={{ base: 4, md: 5 }}>
             <Heading
               fontWeight={600}
               fontSize={{ base: '2xl', sm: '2xl', md: '2xl' }}
@@ -66,22 +78,28 @@ import RequestFormS from '../components/RequestFormStyled';
   
             <Stack
               
-              width={'full'}
-              height = {'full'}
+            //   width={'full'}
+            //   height = {'full'}
               alignItems={'center'}
               spacing={4}
-              display = {'flex'}
-
-              alignSelf={'center'}
-              columnGap = {10}
-              position={'relative'}
-              margin = {'auto'}
-              padding = {'auto'}
-
+            //   display = {'flex'}
+            //   alignSelf={'center'}
+            //   columnGap = {10}
+            //   position={'relative'}
+            //   margin = {'auto'}
+            //   padding = {'auto'}
+            display = {'flex'}
             
+
               >
-            
+  
             <Button
+
+             onClick = {(e) => {
+                handleButtonClick('Water');
+                setText (e.target.value)
+            }}
+
                 colorScheme={'blue'}
                 width = {250}
                 height = {100}
@@ -97,7 +115,12 @@ import RequestFormS from '../components/RequestFormStyled';
                 }}>
               Water
             </Button>
+ 
             <Button
+             onClick = {(e) => {
+                handleButtonClick('Toileting');
+                setText (e.target.value)
+            }}
                 colorScheme={'blue'}
                 bg={'#D8F3FF'}
                 width = {250}
@@ -114,6 +137,10 @@ import RequestFormS from '../components/RequestFormStyled';
               Toileting
             </Button>
             <Button
+             onClick = {(e) => {
+                handleButtonClick('Pain Relief');
+                setText (e.target.value)
+            }}
                 colorScheme={'blue'}
                 bg={'#D8F3FF'}
                 border = {'4px'}
@@ -129,7 +156,12 @@ import RequestFormS from '../components/RequestFormStyled';
                 }}>
               Pain Relief
             </Button>
+
             <Button
+             onClick = {(e) => {
+                handleButtonClick('Mobility Assistance');
+                setText (e.target.value)
+            }}
                 colorScheme={'blue'}
                 bg={'#D8F3FF'}
                 border = {'4px'}
@@ -146,13 +178,8 @@ import RequestFormS from '../components/RequestFormStyled';
               Mobility <br/>
               Assistance
             </Button>
-  
+
             < RequestFormS />
-
-              
-
-
-      
 
 
             </Stack>

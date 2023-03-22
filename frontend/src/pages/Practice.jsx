@@ -46,33 +46,40 @@ export default function CallToActionWithAnnotation() {
             align={'center'}
             alignSelf={'center'}
             position={'relative'}>
-                        <Link to = "/login">
+          <Link to = "/login">
 
             <Button
-              colorScheme={'blue'}
-              bg={'blue.400'}
-              rounded={30}
-              
-              fontSize={'5xl'}
-              px={10}
-              py = {10}
-              _hover={{
-                bg: 'blue.500',
-              }}>
+            
+            colorScheme={'blue'}
+            width = {250}
+            height = {100}
+            bg={'#5FA7CF'}
+            border = {'4px'}
+            color = {'white'}    
+            fontSize={'5xl'}
+            borderRadius = {20}
+            px={10}
+            py = {'10'}
+            _hover={{
+              bg: '#B9E9FF',
+            }}>
               Login
             </Button>
             </Link>
             <Link to = "/signup">
-            <Button
+            <Button   
               colorScheme={'blue'}
-              bg={'blue.400'}
-              rounded={30}
-              
+              width = {250}
+              height = {100}
+              bg={'#5FA7CF'}
+              border = {'4px'}
+              color = {'white'}    
               fontSize={'5xl'}
+              borderRadius = {20}
               px={10}
-              py = {10}
+              py = {'10'}
               _hover={{
-                bg: 'blue.500',
+                bg: '#B9E9FF',
               }}>
               Sign up
             </Button>

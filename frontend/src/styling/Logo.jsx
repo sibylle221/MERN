@@ -2,7 +2,7 @@ import React from "react";
 
 import logo from "../assets/images/logo.svg";
 import { useNavigate, NavLink } from "react-router-dom";
-
+import { Text } from "@chakra-ui/react";
 function Logo() {
   const navigate = useNavigate();
   return (
@@ -10,8 +10,10 @@ function Logo() {
       <button onClick={() => navigate(-1)}>
         <img src={logo} />
       </button>
-
-      <h5> Propel Health </h5>
+      <Text 
+      colour={'#5FA7CF'}>
+       Propel Health 
+      </Text>
     </div>
   );
 }

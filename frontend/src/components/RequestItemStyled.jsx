@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { cancelRequest, deleteRequest } from '../features/requests/requestSlice';
 import { Button, Text, Box } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 function RequestItemS({ request }) {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function RequestItemS({ request }) {
     }
   };
 
+  const navigate = useNavigate();
   return (
     <Box
       className="request"
@@ -68,7 +70,10 @@ function RequestItemS({ request }) {
       </Button> */}
 
       <Button
-        onClick={onCancel}
+        onClick={
+          onCancel
+          
+        }
         className="cancel"
         bg="#D8F3FF"
         border="2px"

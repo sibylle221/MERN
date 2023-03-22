@@ -28,15 +28,8 @@ function App() {
     <>
       <Router>
         <div className="container" id="app">
-          {/* <Header /> */}
-          {/* <Box
-          bgImage="url('./assets/images/background.svg')"
-          bgRepeat="no-repeat"
-          bgSize="cover"
-          bgPosition="center"
-          height="100vh"
-          width="100vw"
-        > */}
+          <Header />
+
           <Routes>
             {/* this.props.currentUser.role === 'admin' ? */}
             <>

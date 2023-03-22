@@ -19,6 +19,7 @@ import person from "../assets/images/person.svg";
   import stethoscope from "../assets/images/stethoscope.svg";
   import React from 'react'
   import { useEffect } from 'react'
+
   
 
 import RequestItemS from '../components/RequestItemStyled';
@@ -71,7 +72,8 @@ import RequestFormS from '../components/RequestFormStyled';
               align={'center'}
               alignSelf={'center'}
               position={'relative'}>
-            <Link to = "/login">
+                
+            <Link to = "/newrequest">
   
               <Button
                 colorScheme={'blue'}
@@ -91,7 +93,7 @@ import RequestFormS from '../components/RequestFormStyled';
                 
               </Button>
               </Link>
-<           RequestFormS />
+            
               <Text fontSize = {'2xl'} variant={'link'} colorScheme={'blue'} colour = {'blue'} size={'sm'} fontWeight={'bold'}>
               Active Requests:
                 </Text>
@@ -115,10 +117,9 @@ import RequestFormS from '../components/RequestFormStyled';
   )}
 </section>
       
-      
+      <Link to = "/pastrequests">
               <Button
                 colorScheme={'blue'}
-                // rounded={'full'}
                 bg={'#D8F3FF'}
                 border = {'4px'}
                 color = {'#5FA7CF'}    
@@ -132,6 +133,7 @@ import RequestFormS from '../components/RequestFormStyled';
                 View Past Requests
                 
               </Button>
+              </Link>
 
             </Stack>
           </Stack>
