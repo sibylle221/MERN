@@ -75,7 +75,6 @@ fontWeight = {'bold'}
 <Logo/>
     <section className = "heading">
         <h1>
-           {/* <FaSignInAlt/> Login */}
             </h1>
         <p>Login</p>
     </section>
@@ -113,7 +112,7 @@ color ={'black'}
         bgColor={'#5FA7CF'}
         fontSize = {'2xl'}
         color = 'white' type = "submit" className = "btn btn-block">Login</Button>
-    {/* <button color = '#5FA7CF' type = "submit" className = "btn btn-block">Register</button> */}
+    
     </div>
     </form>
     <Button

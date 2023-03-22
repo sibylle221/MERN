@@ -2,11 +2,13 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import RequestForm from '../components/RequestForm'
-import Spinner from '../components/Spinner'
+import RequestForm from '../../components/oldcomponents/RequestForm'
+import Spinner from '../../components/Spinner'
 import { toast } from 'react-toastify'
-import { getRequests, reset } from '../features/requests/requestSlice'
-import RequestItemStaff from '../components/RequestItemStaff'
+import { getRequests, reset } from '../../features/requests/requestSlice'
+import RequestItemStaff from '../../components/RequestItemStaff'
+import Logo from '../../styling/Logo'
+import { Heading, Box, Button, Text } from '@chakra-ui/react'
 
 function Requests() {
 
@@ -39,10 +41,21 @@ function Requests() {
 
   return (
     <>
+    <Box
+    fontWeight={'bold'}
+    color = {'#5FA7CF'}
+    >
+
+
+    <Logo/>
     <section className="heading">
         <h1>Manage Patient Requests</h1>
-        <p>Current Active Requests</p>
+        
     </section>
+    <Text
+        color={'gray.500'}
+        fontSize={'3xl'}
+        >Current Active Requests:</Text>
 
     <section className="content">
   {requests.filter(request => request.status === "active").length > 0 ? (
@@ -57,15 +70,27 @@ function Requests() {
     <h2>No Active Requests</h2>
   )}
 </section>
+<Text
+        color={'gray.500'}
+        fontSize={'3xl'}
+        >In Progress Requests:  
+        </Text>
 <section className="pending">
-        <h1>In Progress Requests   
-        </h1>
+        
+        
+        {requests.filter(request => request.status === "pending").length > 0 ? (
+          <div>
         {requests
         .filter(request => request.status === "pending")
         .map(request => (
           <RequestItemStaff key={request._id} request={request} />
         ))}
+        </div>
+         ) : (
+    <h2>No Requests in Progress</h2>
+  )}
         </section>
+        </Box>
     </>
   )
 }

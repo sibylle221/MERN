@@ -8,6 +8,12 @@ const medicationSchema = mongoose.Schema(
       required: true,
     },
 
+    email: {
+      type: String,
+      ref: "email",
+      required: true,
+    },
+
     // patient: {
     //   type: String,
     //   required: [true, "Please add a patient"],

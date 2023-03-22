@@ -7,21 +7,7 @@ function MedicationItem( {medication}) {
 
   return (
     <div className= "medication">
-        {/* <div>
-            {new Date(medication.createdAt).toLocaleDateString('en-GB')}
-            <br></br>
-            {new Date(medication.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
-        </div> */}
-        {/* <p>Drug:</p>
-           
-            <h3>
-            {medication.drug}
-            </h3>
-        <p>
-            Dosage:
-        </p>
-        <h3>{medication.dosage}</h3> */}
-        {/* table displaying information on the patient's prescriptions */}
+
         <table>
             <tr>
                 <th>Medication</th>

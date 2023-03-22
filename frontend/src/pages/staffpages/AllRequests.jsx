@@ -2,11 +2,11 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import RequestForm from '../components/RequestForm'
-import Spinner from '../components/Spinner'
+import Spinner from '../../components/Spinner'
 import { toast } from 'react-toastify'
-import { getAllRequests, reset } from '../features/requests/requestSlice'
-import RequestItem from '../components/RequestItem'
+import { getAllRequests, reset } from '../../features/requests/requestSlice'
+import RequestItemS from '../../components/RequestItemStyled'
+import { Box, Button, Heading, Text } from '@chakra-ui/react'
 
 function AllRequests() {
 
@@ -42,6 +42,11 @@ function AllRequests() {
 
   return (
     <>
+    <Box
+    bg={'#5FA7CF'}
+    color = {'white'}
+    fontWeight = {'bold'}
+    >
     <section className="heading">
         <h1>Manage Requests</h1>
         <p>How can we help you today?</p>
@@ -50,13 +55,14 @@ function AllRequests() {
     {requests.filter(request => request.status === "active").length > 0 ? (
         <div className = "requests">
             {requests.filter(request => request.status === "active").map((request) => (
-                <RequestItem key={request._id} request={request} />
+                <RequestItemS key={request._id} request={request} />
         ))}
         </div>
     ) :
     (<h2>No Active Requests</h2>)
     }
 </section>
+</Box>
     </>
 
   )

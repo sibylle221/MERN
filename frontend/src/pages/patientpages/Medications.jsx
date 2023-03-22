@@ -2,13 +2,13 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import Spinner from '../components/Spinner'
+import Spinner from '../../components/Spinner'
 import { toast } from 'react-toastify'
-import { getMedications, reset } from '../features/medications/medicationSlice'
-import MedicationItem from '../components/MedicationItem'
-import MedicationForm from '../components/MedicationForm'
+import { getMedications, reset } from '../../features/medications/medicationSlice'
+import MedicationItem from '../../components/MedicationItem'
+import MedicationForm from '../../components/MedicationForm'
 import { Text, Box, Table, Tr, Th, Td,  } from '@chakra-ui/react'
-import LogoSmall from '../styling/LogoSmall'
+import LogoSmall from '../../styling/LogoSmall'
 
 function MedicationsS() {
 

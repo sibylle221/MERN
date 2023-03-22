@@ -2,20 +2,20 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import NoteForm from '../components/NoteForm'
-import Spinner from '../components/Spinner'
+import NoteForm from '../../components/NoteForm'
+import Spinner from '../../components/Spinner'
 import { toast } from 'react-toastify'
-import { getNotes, reset } from '../features/notes/noteSlice'
-import NoteItem from '../components/NoteItem'
+import { getNotes, reset } from '../../features/notes/noteSlice'
+import NoteItem from '../../components/NoteItem'
 
-function Notes() {
+function Dashboard() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const { user } = useSelector((state) => state.auth)
+    const {user } = useSelector((state) => state.auth)
 
-    const { notes, isLoading, isError, message } = useSelector((state) => state.notes)
+    const { notes, isLoading, isError, message, isSuccess } = useSelector((state) => state.notes)
 
     useEffect(() => {
         if(isError) {
@@ -40,10 +40,10 @@ function Notes() {
   return (
     <>
     <section className="heading">
-        <h1>Your Notes</h1>
-        <p>Notes Dashboard</p>
+        <h1>Welcome {user && user.name}</h1>
+        <p>Home</p>
     </section>
-    <NoteForm />
+    {/* <NoteForm /> */}
 
     <section className="content">
         {notes.length > 0 ? (
@@ -60,4 +60,4 @@ function Notes() {
   )
 }
 
-export default Notes
+export default Dashboard

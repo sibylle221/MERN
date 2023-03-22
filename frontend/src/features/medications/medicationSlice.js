@@ -15,6 +15,7 @@ export const createMedication = createAsyncThunk(
   async (medicationData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
+      console.log(medicationData, token);
       return await medicationService.createMedication(medicationData, token);
     } catch (error) {
       const message =

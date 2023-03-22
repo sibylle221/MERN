@@ -11,19 +11,31 @@ import {
     createIcon,
   } from '@chakra-ui/react';
   import { useSelector, useDispatch } from 'react-redux'
-  import  LogoSmall from '../styling/LogoSmall';
+  import  LogoSmall from '../../styling/LogoSmall';
   import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
   import { Link, useNavigate } from 'react-router-dom'
-  import medical from "../assets/images/medical.svg";
-import person from "../assets/images/person.svg";
-  import stethoscope from "../assets/images/stethoscope.svg";
+ import React from 'react'
+  import { useEffect } from 'react'
 
+  
+
+import RequestItemS from '../../components/RequestItemStyled';
+import RequestFormS from '../../components/RequestFormStyled';
+  import Spinner from '../../components/Spinner'
+  import { toast } from 'react-toastify'
+  import { getRequests, reset } from '../../features/requests/requestSlice'
+//   import RequestItem from '../components/RequestItem'
+  
 
 
   export default function CallToActionWithAnnotation() {
   
           
     const {user } = useSelector((state) => state.auth)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const { requests, isLoading, isError, message } = useSelector((state) => state.requests)
 
     return (
       <>
@@ -44,7 +56,7 @@ import person from "../assets/images/person.svg";
                   <LogoSmall /><br />
                   <br></br>
                 <Text as={'span'}  fontSize = {'5xl'} color = {'#5FA7CF'}>  
-                  Welcome {user && user.name}!
+                  Manage Requests
                 </Text>
             </Heading>
     
@@ -57,80 +69,69 @@ import person from "../assets/images/person.svg";
               align={'center'}
               alignSelf={'center'}
               position={'relative'}>
-                <Link to = "/login">
+                
+            <Link to = "/newrequest">
   
               <Button
                 colorScheme={'blue'}
+                // rounded={'full'}
                 bg={'#D8F3FF'}
-                rounded={'full'}
+                border = {'4px'}
                 color = {'#5FA7CF'}    
                 fontSize={'3xl'}
+                borderRadius = {'md'}
 
-                px={20}
-                py = {16}
+                px={10}
+                py = {'10'}
                 _hover={{
                   bg: '#B9E9FF',
                 }}>
-                View my <br></br>
-                Information
-                <img src={medical} />
+                New Request
+                
               </Button>
               </Link>
-              <Link to = "/signup">
+            
+              <Text fontSize = {'2xl'} variant={'link'} colorScheme={'blue'} colour = {'blue'} size={'sm'} fontWeight={'bold'}>
+              Active Requests:
+                </Text>
+              
+
+              <section className="content">
+  {requests.filter(request => request.status === "active").length > 0 ? (
+    <div className="requests">
+      {requests
+        .filter(request => request.status === "active")
+        .map(request => (
+          <RequestItemS key={request._id} request={request} />
+        ))}
+    </div>
+  ) : (
+    <Text fontSize = {'2xl'} variant={'link'} colorScheme={'blue'} colour = {'blue'} size={'sm'} fontWeight={'bold'}>
+    There are currently no Active Requests
+        </Text>
+
+
+  )}
+</section>
+      
+      <Link to = "/pastrequests">
               <Button
                 colorScheme={'blue'}
                 bg={'#D8F3FF'}
-                rounded={'full'}
+                border = {'4px'}
                 color = {'#5FA7CF'}    
                 fontSize={'3xl'}
-                px={20}
-                py = {16}
+                borderRadius = {'md'}
+                px={10}
+                py = {'10'}
                 _hover={{
                   bg: '#B9E9FF',
                 }}>
-                Update <br></br>
-                Status
-                <img  src={person} />
+                View Past Requests
+                
               </Button>
               </Link>
-              <Link to = "/signup">
-              <Button
-                colorScheme={'blue'}
-                bg={'#D8F3FF'}
-                rounded={'full'}
-                color = {'#5FA7CF'}    
-                fontSize={'3xl'}        
-                px={20}
-                py = {16}
-                _hover={{
-                  bg: '#B9E9FF',
-                }}>
-                Manage <br></br>
-                Requests
-                <img  src={stethoscope} />
-              </Button>
-              </Link>
-              <Button fontSize = {'2xl'} variant={'link'}  color = {'#5FA7CF'}  size={'sm'}>
-                Check-in
-              </Button>
-              <Button fontSize = {'2xl'} variant={'link'} colorScheme={'blue'} size={''}
-                     
-                           
-                            bg={'#D8F3FF'}
-                            rounded={'full'}
-                            color = {'#5FA7CF'}    
-                           px={5}
-                            py = {2}
-                            _hover={{
-                              bg: '#B9E9FF',
-                            }}
-              >
-                Logout
-              </Button>
-              <Box>
-  
-              
-              </Box>
+
             </Stack>
           </Stack>
         </Container>

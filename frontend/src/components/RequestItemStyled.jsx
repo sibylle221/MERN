@@ -58,17 +58,6 @@ function RequestItemS({ request }) {
 
       <Text fontSize={'2xl'} fontWeight={'bold'}>{request.text}</Text>
 
-      {/* <Button
-        onClick={onDelete}
-        className="delete"
-        bg="#D8F3FF"
-        border="2px"
-        color="#5FA7CF"
-        _hover={{ bg: '#B9E9FF' }}
-      >
-        Delete
-      </Button> */}
-
       <Button
         onClick={
           onCancel

@@ -11,21 +11,18 @@ import {
     createIcon,
   } from '@chakra-ui/react';
   import { useSelector, useDispatch } from 'react-redux'
-  import  LogoSmall from '../styling/LogoSmall';
+  import  LogoSmall from '../../styling/LogoSmall';
   import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
   import { Link, useNavigate } from 'react-router-dom'
-  import medical from "../assets/images/medical.svg";
-import person from "../assets/images/person.svg";
-  import stethoscope from "../assets/images/stethoscope.svg";
-  import React from 'react'
+import React from 'react'
   import { useEffect } from 'react'
   
 import { useState } from 'react'
-import RequestItemS from '../components/RequestItemStyled';
-import RequestFormS from '../components/RequestFormStyled';
-  import Spinner from '../components/Spinner'
+import RequestItemS from '../../components/RequestItemStyled';
+import RequestFormS from '../../components/RequestFormStyled';
+  import Spinner from '../../components/Spinner'
   import { toast } from 'react-toastify'
-  import { getRequests, reset, createRequest } from '../features/requests/requestSlice'
+  import { getRequests, reset, createRequest } from '../../features/requests/requestSlice'
 import { createReducer } from '@reduxjs/toolkit';
 //   import RequestItem from '../components/RequestItem'
 

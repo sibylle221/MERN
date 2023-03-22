@@ -34,6 +34,7 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
+    const role = user.get("role");
     res.status(201).json({
       _id: user.id,
       name: user.name,
@@ -59,6 +60,7 @@ const loginUser = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.name,
       email: user.email,
+      role: user.role,
       token: generateToken(user._id),
     });
   } else {
@@ -72,6 +74,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // @access Private
 
 const getMe = asyncHandler(async (req, res) => {
+  console.log(req.user);
   res.status(200).json(req.user);
 });
 

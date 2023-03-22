@@ -2,7 +2,7 @@ import React from 'react'
 import { useState} from 'react'
 import {useDispatch} from 'react-redux'
 import { createNote } from '../features/notes/noteSlice'
-
+import { Button, Text, Box } from '@chakra-ui/react'
 
 function NoteForm() {
 
@@ -16,20 +16,38 @@ function NoteForm() {
 
     const dispatch = useDispatch()
 
-  return <section className='form'>
+  return <Box
+  color = {'black'}
+  >
+  <section className='form'>
         <form onSubmit={onSubmit}>
             <div className='form-group'>
-                <label htmlFor='text'>Notes</label>
+                <Text 
+                color = {'black'}
+                align = {'left'}
+                >
+                    Status
+                </Text>
+
                 <input type='text' name='text' id='text' value = {text}
                     onChange = {(e) => setText (e.target.value)} />
                 
             </div>
             <div className="form-group">
-                <button type="submit" className="btn btn-block">Add note</button>
+
+                <Button
+                bg={'#D8F3FF'}
+                color = {'#5FA7CF'}
+                type="submit"   
+                >
+                    Add Status
+                    </Button>              
+                {/* <button type="submit" className="btn btn-block">Add note</button> */}
             </div>
         </form>
         
          </section>
+         </Box>
 
   
 }

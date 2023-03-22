@@ -1,64 +1,3 @@
-// import React from 'react'
-// import { useState} from 'react'
-// import {useDispatch} from 'react-redux'
-// import { createMedication } from '../features/medications/medicationSlice'
-
-
-// function MedicationForm() {
-
-//     const onSubmit = e => {
-//         e.preventDefault()
-//         dispatch(createMedication({user, drug, dosage, doctor, instructions}))
-//         setUser('')
-//         setDrug('')
-//         setDosage('')
-//         setDoctor('')
-//         setInstructions('')
-
-//     }
-    
-//     const [user , setUser] = useState('')
-//     const [drug , setDrug] = useState('')
-//     const [dosage , setDosage] = useState('')
-//     const [doctor , setDoctor] = useState('')
-//     const [instructions , setInstructions] = useState('')
-
-
-
-//     const dispatch = useDispatch()
-
-//   return <section className='form'>
-//         <form onSubmit={onSubmit}>
-//             <div className='form-group'>
-//                 <label htmlFor='user'>Patient:</label>
-//                 <input type='text' name='user' value={user} on
-//                     onChange = {(e) => setUser (e.target.value)} />
-//                     <label htmlFor='drug'>Drug:</label>
-//                 <input type='text' name='drug' value={drug} on
-//                     onChange = {(e) => setDrug (e.target.value)} />
-//                     <label htmlFor='text'>Dosage:</label>
-//                 <input type='text' name='dosage' value={dosage} on
-//                     onChange = {(e) => setDosage (e.target.value)} />
-//                     <label htmlFor='text'>Prescribed by:</label>
-//                 <input type='text' name='doctor' value={doctor} on
-//                     onChange = {(e) => setDoctor (e.target.value)} />
-//                     <label htmlFor='text'>Instructions:</label>
-//                 <input type='text' name='instructions' value={instructions} on
-//                     onChange = {(e) => setInstructions (e.target.value)} />
-
-                
-//             </div>
-//             <div className="form-group">
-//                 <button type="submit" className="btn btn-block">Add Prescription</button>
-//             </div>
-//         </form>
-        
-//          </section>
-
-  
-// }
-
-// export default MedicationForm
 
 // import React from 'react'
 import { useState, useEffect } from 'react'
@@ -71,13 +10,13 @@ import React from 'react'
 // import {useDispatch} from 'react-redux'
 import { createMedication } from '../features/medications/medicationSlice'
 import { reset } from '../features/auth/authSlice'
+import {Box , Button, } from '@chakra-ui/react'
 
 
 
-
-function MedicationForm() {
+function MedicationFormS() {
     const [formData , setFormData] = useState({
-        user: '',
+        email: '',
         drug: '',
         dosage: '',
         doctor: '',
@@ -85,7 +24,7 @@ function MedicationForm() {
 
     })
 
-    const { name, drug, dosage, doctor, instructions } = formData
+    const { user, email, drug, dosage, doctor, instructions } = formData
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -106,7 +45,7 @@ function MedicationForm() {
        
        {
             const medicationData = {
-                name,
+                email,
                 drug,
                 dosage,
                 doctor,
@@ -121,7 +60,7 @@ function MedicationForm() {
 
   return (
 <>
-  
+  <Box>
 
 
     <section className = "form"> 
@@ -130,10 +69,10 @@ function MedicationForm() {
     <input
     type = "request"
     className ="form-control"
-    id = "name"
-    name = "name"
-    placeholder = "Please enter Patient Name"
-    value = {name}
+    id = "email"
+    name = "email"
+    placeholder = "Please enter Patient Email"
+    value = {email}
     onChange = { onChange} />
     </div>
     <div className = "form-group">
@@ -177,14 +116,22 @@ function MedicationForm() {
     onChange = { onChange} />
     </div>
     <div className = "form-group">
-    <button type = "submit" className = "btn btn-block">Prescribe Medication</button>
+
+        <Button
+        type = "submit"
+        color = {'#5FA7CF'}
+        bg={'#D8F3FF'}
+        >
+            Prescribe Medication
+    {/* <button type = "submit" className = "btn btn-block">Prescribe Medication</button> */}
+    </Button>
     </div>
     </form>
     </section>
-
+    </Box>
 </>
     )
 }
 
 
-export default MedicationForm
+export default MedicationFormS

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { cancelRequest, deleteRequest } from '../features/requests/requestSlice';
+import { cancelRequest, deleteRequest } from '../../features/requests/requestSlice';
 
 function RequestItem({ request }) {
   const dispatch = useDispatch();

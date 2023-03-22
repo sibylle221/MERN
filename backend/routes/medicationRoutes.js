@@ -10,6 +10,7 @@ const {
 const { protect } = require("../middleware/authMiddleware");
 
 router.route("/").get(protect, getMedications).post(protect, setMedication);
+
 router
   .route("/:id")
   .put(protect, updateMedication)

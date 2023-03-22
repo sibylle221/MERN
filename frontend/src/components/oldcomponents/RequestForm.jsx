@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import {useDispatch} from 'react-redux'
-import { createRequest } from '../features/requests/requestSlice'
+import { createRequest } from '../../features/requests/requestSlice'
 
 
 function RequestForm() {

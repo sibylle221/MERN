@@ -21,13 +21,17 @@ const setMedication = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Please add a medication");
   }
+  const email = req.body.email;
+  const user = await User.findOne({ email });
   const medication = await Medication.create({
-    user: req.user.id,
+    email: req.body.email,
+    user: user._id,
     drug: req.body.drug,
     dosage: req.body.dosage,
     doctor: req.body.doctor,
     instructions: req.body.instructions,
   });
+  console.log(medication, "YIIIIIPPPPPEEEEEE");
   res.status(200).json(medication);
 });
 

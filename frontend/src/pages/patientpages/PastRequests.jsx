@@ -2,13 +2,13 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import RequestForm from '../components/RequestForm'
-import Spinner from '../components/Spinner'
+import RequestForm from '../../components/oldcomponents/RequestForm'
+import Spinner from '../../components/Spinner'
 import { toast } from 'react-toastify'
-import { getRequests, reset } from '../features/requests/requestSlice'
-import RequestItemS from '../components/RequestItemStyled'
+import { getRequests, reset } from '../../features/requests/requestSlice'
+import RequestItemS from '../../components/RequestItemStyled'
 import { Heading, Text } from '@chakra-ui/react'
-import LogoSmall from '../styling/LogoSmall'
+import LogoSmall from '../../styling/LogoSmall'
 
 
 function PastRequests() {
