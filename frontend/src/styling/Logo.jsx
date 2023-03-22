@@ -11,7 +11,9 @@ function Logo() {
         <img src={logo} />
       </button>
       <Text 
-      colour={'#5FA7CF'}>
+      colour={'#5FA7CF'}
+
+fontWeight = {'bold'}>
        Propel Health 
       </Text>
     </div>

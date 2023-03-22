@@ -25,6 +25,18 @@ const getRequests = async (token) => {
   return response.data;
 };
 
+// Get all requests from all users for admin
+const getAllRequests = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.get(API_URL + "all", config);
+  console.log("HEEERREEE", response.data);
+  return response.data;
+};
+
 // Delete request
 const deleteRequest = async (requestId, token) => {
   console.log("hello from service testing this");

@@ -110,10 +110,21 @@ import person from "../assets/images/person.svg";
                 <img  src={stethoscope} />
               </Button>
               </Link>
-              <Button fontSize = {'2xl'} variant={'link'} colorScheme={'blue'} size={'sm'}>
+              <Button fontSize = {'2xl'} variant={'link'}  color = {'#5FA7CF'}  size={'sm'}>
                 Check-in
               </Button>
-              <Button fontSize = {'2xl'} variant={'link'} colorScheme={'blue'} size={'sm'}>
+              <Button fontSize = {'2xl'} variant={'link'} colorScheme={'blue'} size={''}
+                     
+                           
+                            bg={'#D8F3FF'}
+                            rounded={'full'}
+                            color = {'#5FA7CF'}    
+                           px={5}
+                            py = {2}
+                            _hover={{
+                              bg: '#B9E9FF',
+                            }}
+              >
                 Logout
               </Button>
               <Box>

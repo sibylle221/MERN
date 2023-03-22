@@ -7,6 +7,9 @@ import {useNavigate} from 'react-router-dom'
 import {toast } from 'react-toastify'
 import { login, reset } from "../features/auth/authSlice"
 import Spinner from '../components/Spinner'
+import Logo from '../styling/Logo'
+import {Text} from '@chakra-ui/react'
+import {Stack, Box, Button} from '@chakra-ui/react'
 
 function Login() {
     const [formData , setFormData] = useState({
@@ -62,14 +65,25 @@ function Login() {
 
   return (
 <>
+<Stack
+align={'center'}
+color ={'#5FA7CF'}
+fontWeight = {'bold'}
+>
+    
+
+<Logo/>
     <section className = "heading">
         <h1>
-           <FaSignInAlt/> Login
+           {/* <FaSignInAlt/> Login */}
             </h1>
         <p>Login</p>
     </section>
 
-
+<Box
+width   = {'full'}
+color ={'black'}
+>
     <section className = "form"> 
     <form onSubmit = {onSubmit}  >
     
@@ -95,11 +109,26 @@ function Login() {
     </div>
     
     <div className = "form-group">
-    <button type = "submit" className = "btn btn-block">Register</button>
+        <Button 
+        bgColor={'#5FA7CF'}
+        fontSize = {'2xl'}
+        color = 'white' type = "submit" className = "btn btn-block">Login</Button>
+    {/* <button color = '#5FA7CF' type = "submit" className = "btn btn-block">Register</button> */}
     </div>
     </form>
-    </section>
+    <Button
 
+    color = {'#5FA7CF'}
+    fontSize = {'xl'}
+    fontWeight = {'bold'}
+    onClick = {() => navigate('/register')}
+    >
+        Not a member? Register here
+    </Button>
+
+    </section>
+    </Box>
+    </Stack>
 </>
     )
 }

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {
   getRequests,
+  getAllRequests,
   setRequest,
   cancelRequest,
   deleteRequest,
@@ -13,6 +14,7 @@ const {
 const { protect } = require("../middleware/authMiddleware");
 
 router.route("/").get(protect, getRequests).post(protect, setRequest);
+router.route("/all").get(protect, getAllRequests);
 router
   .route("/:id")
   .put(protect, cancelRequest)

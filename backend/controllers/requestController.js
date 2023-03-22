@@ -207,6 +207,18 @@ const deleteRequest = asyncHandler(async (req, res) => {
   res.status(200).json({ id: req.params.id });
 });
 
+//function to get all requests from all users for admin
+
+// @desc get all request
+// @route GET /api/requests
+// @access Private
+
+const getAllRequests = asyncHandler(async (req, res) => {
+  const requests = await Request.find({});
+  console.log("HEEERREEE", requests);
+  res.status(200).json(requests);
+});
+
 module.exports = {
   getRequests,
   setRequest,
@@ -215,4 +227,5 @@ module.exports = {
   deleteRequest,
   pendingRequest,
   activateRequest,
+  getAllRequests,
 };

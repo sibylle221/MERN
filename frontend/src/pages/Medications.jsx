@@ -7,8 +7,10 @@ import { toast } from 'react-toastify'
 import { getMedications, reset } from '../features/medications/medicationSlice'
 import MedicationItem from '../components/MedicationItem'
 import MedicationForm from '../components/MedicationForm'
+import { Text, Box, Table, Tr, Th, Td,  } from '@chakra-ui/react'
+import LogoSmall from '../styling/LogoSmall'
 
-function Medications() {
+function MedicationsS() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -39,6 +41,16 @@ function Medications() {
 
   return (
     <>
+
+    <Box
+        //  bg={'#D8F3FF'}
+        //  border = {'2px'}
+         color = {'#5FA7CF'}    
+        fontWeight = {'bold'}
+         borderRadius = {'md'}
+
+    >
+            <LogoSmall/>
     <section className="heading">
         <h1>Medications</h1>
         <p>Prescribed Medications</p>
@@ -46,33 +58,39 @@ function Medications() {
 
     <section className="content">
         {medications.length > 0 ? (
-                <table className="medications">
+                <Table className="medications"
+                color = {'black'}
+                fontWeight = {'normal'}
+                >
                 <thead>
-                  <tr>
-                    <th>Medication</th>
-                    <th>Dosage</th>
-                    <th>Prescribed by</th>
-                    <th>Instructions</th>
-                  </tr>
+                  <Tr
+                  bg = {'#B9E9FF'}
+                  >
+                    <Th>Medication</Th>
+                    <Th>Dosage</Th>
+                    <Th>Prescribed by</Th>
+                    <Th>Instructions</Th>
+                  </Tr>
                 </thead>
                 <tbody>
                   {medications.map((medication) => (
-                    <tr key={medication._id}>
-                      <td>{medication.drug}</td>
-                      <td>{medication.dosage}</td>
-                      <td>{medication.doctor}</td>
-                      <td>{medication.instructions}</td>
-                    </tr>
+                    <Tr key={medication._id}>
+                      <Td>{medication.drug}</Td>
+                      <Td>{medication.dosage}</Td>
+                      <Td>{medication.doctor}</Td>
+                      <Td>{medication.instructions}</Td>
+                    </Tr>
                   ))}
                 </tbody>
-              </table>
+              </Table>
             
         ) :
         (<h2>No medications</h2>)
         }
     </section>
+    </Box>
     </>
   )
 }
 
-export default Medications
+export default MedicationsS

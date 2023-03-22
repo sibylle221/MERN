@@ -47,6 +47,27 @@ export const getRequests = createAsyncThunk(
   }
 );
 
+// function to get all requests by all users
+export const getAllRequests = createAsyncThunk(
+  "requests/getAllRequests",
+  async (_, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      console.log("hello from slice");
+
+      return await requestService.getAllRequests(token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 // Delete request
 export const deleteRequest = createAsyncThunk(
   "requests/delete",
@@ -180,6 +201,21 @@ export const requestSlice = createSlice({
         state.requests = action.payload;
       })
       .addCase(getRequests.rejected, (state, action) => {
+        state.isError = true;
+        state.isSuccess = false;
+        state.isLoading = false;
+        state.message = action.payload;
+      })
+      .addCase(getAllRequests.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllRequests.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isSuccess = true;
+        state.isLoading = false;
+        state.requests = action.payload;
+      })
+      .addCase(getAllRequests.rejected, (state, action) => {
         state.isError = true;
         state.isSuccess = false;
         state.isLoading = false;

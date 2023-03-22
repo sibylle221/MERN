@@ -6,6 +6,8 @@ import {useNavigate} from 'react-router-dom'
 import {toast } from 'react-toastify'
 import { register, reset } from "../features/auth/authSlice"
 import Spinner from '../components/Spinner'
+import Logo from '../styling/Logo'
+import {Text,Button, Box} from '@chakra-ui/react'
 
 function Register() {
     const [formData , setFormData] = useState({
@@ -67,9 +69,11 @@ function Register() {
 
   return (
 <>
+<Box color = {'#5FA7CF'}   >
+<Logo/> 
     <section className = "heading">
         <h1>
-            < FaUser/>Register
+            Register
             </h1>
         <p>Create an account to access Propel Health</p>
     </section>
@@ -118,11 +122,23 @@ function Register() {
     onChange = { onChange} />
     </div>
     <div className = "form-group">
-    <button type = "submit" className = "btn btn-block">Register</button>
+        <Button type='submit'
+                        bg={'#D8F3FF'}
+                        border = {'2px'}
+                        color = {'#5FA7CF'}    
+
+                        borderRadius = {'md'}
+
+                        _hover={{
+                          bg: '#B9E9FF',
+                        }}>
+            Register
+   
+    </Button>
     </div>
     </form>
     </section>
-
+    </Box>
 </>
     )
 }
