@@ -41,7 +41,7 @@ function PrescribeS() {
 
   return (
     <>
-      {/* only return if user is admin else display error*/}#	
+      {/* only return if user is admin else display error#	
       {user && user.role === 'staff' && (	
         <div className="container">	
             <div className="row">	
@@ -71,7 +71,7 @@ function PrescribeS() {
                 </div>	
             </div>	
         </div>	
-    )}	
+    )}	 */}
 
     <Box 
     color = {'#5FA7CF'}
@@ -83,7 +83,7 @@ function PrescribeS() {
         <h1>Prescribe</h1>
         <p>Prescribe New Medication</p>
     </section>
-    {/* <MedicationFormS /> */}
+    <MedicationFormS />
 
 
     </Box>

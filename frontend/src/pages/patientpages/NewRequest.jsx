@@ -42,7 +42,7 @@ import { createReducer } from '@reduxjs/toolkit';
 
         
         dispatch(createRequest({text, status: "active"}))
-        navigate('/requestsStyled')
+        navigate('/requests')
 
     }
     

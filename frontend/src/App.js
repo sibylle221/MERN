@@ -17,35 +17,41 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { connect } from "react-redux";
 import "./app.css";
+import { Box, Container } from "@chakra-ui/react";
+import bg from "./assets/images/bg.jpg";
 
 function App() {
   return (
     <>
-      <Router>
-        <div className="container" id="app">
-          <Routes>
-            <>
-              {/* initial routes */}
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              {/* patient routes */}
-              <Route path="/pastrequests" element={<PastRequests />} />
-              <Route path="/medications" element={<Medications />} />
-              <Route path="/newrequest" element={<NewRequest />} />
-              <Route path="/notes" element={<Notes />} />
-              <Route path="/index" element={<Index />} />
-              <Route path="/requests" element={<Requests />} />
-              {/* staff routes */}
-              <Route path="/staffhome" element={<StaffHome />} />
-              <Route path="/requestsStaff" element={<RequestsStaff />} />
-              <Route path="/allrequests" element={<AllRequests />} />
-              <Route path="/prescribe" element={<Prescribe />} />
-            </>
-          </Routes>
-        </div>
-      </Router>
-      <ToastContainer />
+      <Box bgImage={bg} bgSize="cover" bgPosition="center" bgRepeat="no-repeat">
+        {/* <Container> */}
+        <Router>
+          <div className="container" id="app">
+            <Routes>
+              <>
+                {/* initial routes */}
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                {/* patient routes */}
+                <Route path="/pastrequests" element={<PastRequests />} />
+                <Route path="/medications" element={<Medications />} />
+                <Route path="/newrequest" element={<NewRequest />} />
+                <Route path="/notes" element={<Notes />} />
+                <Route path="/index" element={<Index />} />
+                <Route path="/requests" element={<Requests />} />
+                {/* staff routes */}
+                <Route path="/staffhome" element={<StaffHome />} />
+                <Route path="/requestsStaff" element={<RequestsStaff />} />
+                <Route path="/allrequests" element={<AllRequests />} />
+                <Route path="/prescribe" element={<Prescribe />} />
+              </>
+            </Routes>
+          </div>
+        </Router>
+        <ToastContainer />
+        {/* </Container> */}
+      </Box>
     </>
   );
 }

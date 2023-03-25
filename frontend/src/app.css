@@ -1,6 +1,7 @@
-#app {
-    background-image : url( "./assets/images/background.svg" ) ;
-    background-repeat :  no-repeat ;
-    background-size :  cover ;
-    background-position :  center center ;
+html,body {
+    background: url(./assets/images/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover;    /* Mozilla*/
+    -o-background-size: cover;      /* Opera*/
+    background-size: cover;         /* Generic*/
 }

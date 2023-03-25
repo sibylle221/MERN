@@ -43,11 +43,17 @@ function MedicationsS() {
     <>
 
     <Box
-        //  bg={'#D8F3FF'}
-        //  border = {'2px'}
+
+
          color = {'#5FA7CF'}    
         fontWeight = {'bold'}
          borderRadius = {'md'}
+        margin = {'auto'}
+       textAlign = {'center'}
+       justifyContent = {'center'}
+        alignItems = {'center'}
+
+
 
     >
             <LogoSmall/>
@@ -56,7 +62,7 @@ function MedicationsS() {
         <p>Prescribed Medications</p>
     </section>
 
-    <section className="content">
+ 
         {medications.length > 0 ? (
                 <Table className="medications"
                 color = {'black'}
@@ -87,7 +93,7 @@ function MedicationsS() {
         ) :
         (<h2>No medications</h2>)
         }
-    </section>
+
     </Box>
     </>
   )
