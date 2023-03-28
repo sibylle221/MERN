@@ -110,7 +110,6 @@ import RequestFormS from '../../components/RequestFormStyled';
     There are currently no Active Requests
         </Text>
 
-
   )}
 </section>
       

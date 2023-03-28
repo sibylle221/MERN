@@ -70,12 +70,10 @@ function RequestItemStaff({request}) {
 <br></br>
 
     <div className="request">
-
- 
         <Button
         showif={status === 'pending'}
         onClick={
-          onAccept
+          onActivate
           
         }
         className="cancel"
@@ -86,10 +84,10 @@ function RequestItemStaff({request}) {
         _hover={{ bg: '#B9E9FF' }}
         display="inline-block"
       >
-        Accept
+        Cancel Request
       </Button>
 
-      
+
        
     </div>
     </Box>

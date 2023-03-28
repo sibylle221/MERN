@@ -58,6 +58,24 @@ function RequestItemS({ request }) {
 
       <Text fontSize={'2xl'} fontWeight={'bold'}>{request.text}</Text>
 
+{status === 'pending' && (
+  
+  <Button
+    onClick={
+      onCancel
+    }
+    className="cancel"
+    bg="#D8F3FF"
+    border="2px"
+    color="#5FA7CF"
+    bgColor="white"
+    _hover={{ bg: '#B9E9FF' }}
+    display="inline-block"
+  >
+    Cancel
+  </Button>
+)}
+{status === 'active' && (
       <Button
         onClick={
           onCancel
@@ -73,6 +91,7 @@ function RequestItemS({ request }) {
       >
         Cancel
       </Button>
+      )}
     </Box>
   );
 }
