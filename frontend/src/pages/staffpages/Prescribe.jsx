@@ -41,7 +41,18 @@ function PrescribeS() {
 
   return (
     <>
-      {/* only return if user is admin else display error#	
+        <Box 
+    color = {'#5FA7CF'}
+    fontWeight = {'bold'}
+    >
+
+        <LogoSmall/>
+    <section className="heading">
+        <h1>Prescribe</h1>
+        <p>Prescribe New Medication</p>
+    </section>
+
+      {/* only return if user is admin else display error#	 */}
       {user && user.role === 'staff' && (	
         <div className="container">	
             <div className="row">	
@@ -71,19 +82,7 @@ function PrescribeS() {
                 </div>	
             </div>	
         </div>	
-    )}	 */}
-
-    <Box 
-    color = {'#5FA7CF'}
-    fontWeight = {'bold'}
-    >
-
-        <LogoSmall/>
-    <section className="heading">
-        <h1>Prescribe</h1>
-        <p>Prescribe New Medication</p>
-    </section>
-    <MedicationFormS />
+    )}	
 
 
     </Box>

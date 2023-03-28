@@ -54,6 +54,7 @@ function MedicationFormS() {
             dispatch(createMedication(medicationData))
 
         }
+        navigate('/staffhome')
     } 
 
 
