@@ -23,7 +23,7 @@ export default function CallToActionWithAnnotation() {
             fontWeight={600}
             fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
             lineHeight={'110%'}
-                color = "blue.400">
+            color = {'#5FA7CF'}>
                 <Logo/> <br />
             <Text as={'span'} color={'gray.500'}>
               Healthcare, in your hands
