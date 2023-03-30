@@ -1,18 +1,9 @@
-
-// import React from 'react'
-import { useState, useEffect } from 'react'
-import {useSelector, useDispatch} from 'react-redux'
-import {FaUser} from 'react-icons/fa'
+import { useState} from 'react'
+import {useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
-import {toast } from 'react-toastify'
-import Spinner from '../components/Spinner'
 import React from 'react'
-// import {useDispatch} from 'react-redux'
 import { createMedication } from '../features/medications/medicationSlice'
-import { reset } from '../features/auth/authSlice'
 import {Box , Button, } from '@chakra-ui/react'
-
-
 
 function MedicationFormS() {
     const [formData , setFormData] = useState({
@@ -25,13 +16,8 @@ function MedicationFormS() {
     })
 
     const { user, email, drug, dosage, doctor, instructions } = formData
-
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
-  
-
-
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -57,13 +43,9 @@ function MedicationFormS() {
         navigate('/staffhome')
     } 
 
-
-
   return (
 <>
   <Box>
-
-
     <section className = "form"> 
     <form onSubmit = {onSubmit}  >
     <div className = "form-group">
@@ -124,7 +106,6 @@ function MedicationFormS() {
         bg={'#D8F3FF'}
         >
             Prescribe Medication
-    {/* <button type = "submit" className = "btn btn-block">Prescribe Medication</button> */}
     </Button>
     </div>
     </form>

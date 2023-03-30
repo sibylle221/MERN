@@ -6,19 +6,15 @@ import {
     Text,
     Button,
     Stack,
-    Icon,
-    useColorModeValue,
-    createIcon,
   } from '@chakra-ui/react';
   import { useSelector, useDispatch } from 'react-redux'
   import  LogoSmall from '../../styling/LogoSmall';
-  import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
   import { Link, useNavigate } from 'react-router-dom'
   import medical from "../../assets/images/medical.svg";
-import person from "../../assets/images/person.svg";
+  import person from "../../assets/images/person.svg";
   import stethoscope from "../../assets/images/stethoscope.svg";
   import { logout, reset } from '../../features/auth/authSlice'
-
+  import { useEffect } from 'react'
 
   export default function CallToActionWithAnnotation() {
   
@@ -30,19 +26,24 @@ import person from "../../assets/images/person.svg";
       dispatch(reset())
       navigate('/')
   }  
-
+  
     const {user } = useSelector((state) => state.auth)
+
+    useEffect(() => {
+      if(!user) {
+          navigate('/login')
+      }
+  }, [user, navigate])
 
     return (
       <>
 
         <Container maxW={'3xl'} >
-        
+      
           <Stack
             as={Box}
             textAlign={'center'}
             spacing={{ base: 8, md: 14 }}
-              
             py={{ base: 20, md: 5 }}>
             <Heading
               fontWeight={600}
@@ -56,7 +57,6 @@ import person from "../../assets/images/person.svg";
                 </Text>
             </Heading>
     
-  
             <Stack
               direction={'column'}
               width={'full'}
@@ -121,9 +121,7 @@ import person from "../../assets/images/person.svg";
               <Button fontSize = {'2xl'} variant={'link'}  color = {'#5FA7CF'}  size={'sm'}>
                 Check-in
               </Button>
-              <Button fontSize = {'2xl'} variant={'link'} colorScheme={'blue'} size={''}
-                     
-                           
+              <Button fontSize = {'2xl'} variant={'link'} colorScheme={'blue'} size={''}  
                             bg={'#D8F3FF'}
                             rounded={'full'}
                             color = {'#5FA7CF'}    
@@ -134,18 +132,14 @@ import person from "../../assets/images/person.svg";
                             }}
                             onClick = {() => {
                              onLogout()
-                            }}
-                            
-              >
+                            }} >
                 Logout
               </Button>
   
             </Stack>
           </Stack>
         </Container>
-
-      </>
-     
+      </> 
     );
   }
   

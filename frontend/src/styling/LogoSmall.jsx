@@ -1,18 +1,29 @@
 import React from "react";
-
 import logo from "../assets/images/logo.svg";
 import { useNavigate, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function LogoSmall() {
   const navigate = useNavigate();
-  return (
-    <div >
-      <button onClick={() => navigate(-1)}>
-        <img src={logo} width = "70" height = "70" />
-      </button>
+  const {user } = useSelector((state) => state.auth)
 
-      <h5> Propel Health </h5>
-    </div>
+  return (
+<div>
+  {user.role === "patient" ? (
+    <button onClick={() => navigate('/home')}>
+      <img src={logo} width="70" height="70" />
+    </button>
+  ) : null}
+
+  {user.role === "staff" ? (
+    <button onClick={() => navigate('/staffhome')}>
+      <img src={logo} width="70" height="70" />
+    </button>
+  ) : null}
+
+  <h5> Propel Health </h5>
+</div>
+
   );
 }
 

@@ -1,4 +1,3 @@
-
 import {
     Box,
     Heading,
@@ -6,40 +5,40 @@ import {
     Text,
     Button,
     Stack,
-    Icon,
-    useColorModeValue,
-    createIcon,
   } from '@chakra-ui/react';
-  import { useSelector, useDispatch } from 'react-redux'
-  import  LogoSmall from '../../styling/LogoSmall';
-  import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
-  import { Link, useNavigate } from 'react-router-dom'
- import React from 'react'
-  import { useEffect } from 'react'
-
-  
-
+import { useSelector, useDispatch } from 'react-redux'
+import  LogoSmall from '../../styling/LogoSmall';
+import { Link, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { useEffect } from 'react'
 import RequestItemS from '../../components/RequestItemStyled';
-import RequestFormS from '../../components/RequestFormStyled';
-  import Spinner from '../../components/Spinner'
-  import { toast } from 'react-toastify'
-  import { getRequests, reset } from '../../features/requests/requestSlice'
-//   import RequestItem from '../components/RequestItem'
-  
-
+import { toast } from 'react-toastify'
+import { getRequests, reset } from '../../features/requests/requestSlice'
 
   export default function CallToActionWithAnnotation() {
   
-          
     const {user } = useSelector((state) => state.auth)
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
     const { requests, isLoading, isError, message } = useSelector((state) => state.requests)
 
+    useEffect(() => {
+      if(isError) {
+          toast.error(message)
+      }
+      if(!user) {
+          navigate('/login')
+      }
+  
+      dispatch(getRequests())
+  
+      return () => {
+          dispatch(reset())
+      }
+  
+  }, [user, navigate, dispatch, isError, message])
     return (
       <>
-
         <Container maxW={'3xl'} >
         
           <Stack
@@ -60,7 +59,6 @@ import RequestFormS from '../../components/RequestFormStyled';
                 </Text>
             </Heading>
     
-  
             <Stack
               direction={'column'}
               width={'full'}
@@ -95,12 +93,10 @@ import RequestFormS from '../../components/RequestFormStyled';
               Active Requests:
                 </Text>
               
-
-              <section className="content">
-  {requests.filter(request => request.status === "active").length > 0 ? (
+              {/* Check if there are active or pending requests and display */}
+  {requests.filter(request => request.status === "active" || request.status === "pending").length > 0 ? (
     <div className="requests">
-      {requests
-        .filter(request => request.status === "active")
+      {requests.filter(request => request.status === "active" || request.status === "pending")
         .map(request => (
           <RequestItemS key={request._id} request={request} />
         ))}
@@ -111,7 +107,6 @@ import RequestFormS from '../../components/RequestFormStyled';
         </Text>
 
   )}
-</section>
       
       <Link to = "/pastrequests">
               <Button
@@ -127,16 +122,12 @@ import RequestFormS from '../../components/RequestFormStyled';
                   bg: '#B9E9FF',
                 }}>
                 View Past Requests
-                
               </Button>
               </Link>
-
             </Stack>
           </Stack>
         </Container>
-
       </>
-     
     );
   }
   

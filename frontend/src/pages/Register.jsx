@@ -1,13 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {FaUser} from 'react-icons/fa'
 import {useNavigate} from 'react-router-dom'
 import {toast } from 'react-toastify'
 import { register, reset } from "../features/auth/authSlice"
 import Spinner from '../components/Spinner'
 import Logo from '../styling/Logo'
-import {Text,Button, Box} from '@chakra-ui/react'
+import {Button, Box} from '@chakra-ui/react'
 
 function Register() {
     const [formData , setFormData] = useState({
@@ -18,10 +17,8 @@ function Register() {
     })
 
     const { name, email, password, password2 } = formData
-
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
     const { user, isLoading, isError, message, isSuccess } = useSelector (
         (state) => state.auth
         )
@@ -33,7 +30,7 @@ function Register() {
         }
         if(isSuccess || user) {
             toast.success(message)
-            navigate('/')
+            navigate('/home')
         }
         dispatch (reset())
 
@@ -58,15 +55,12 @@ function Register() {
                 password
             }
             dispatch(register(userData))
-
         }
     } 
 
     if (isLoading) {
         return <Spinner />
     }
-
-
   return (
 <>
 <Box color = {'#5FA7CF'}   >
@@ -77,7 +71,6 @@ function Register() {
             </h1>
         <p>Create an account to access Propel Health</p>
     </section>
-
 
     <section className = "form"> 
     <form onSubmit = {onSubmit}  >
@@ -126,14 +119,11 @@ function Register() {
                         bg={'#D8F3FF'}
                         border = {'2px'}
                         color = {'#5FA7CF'}    
-
                         borderRadius = {'md'}
-
                         _hover={{
                           bg: '#B9E9FF',
                         }}>
             Register
-   
     </Button>
     </div>
     </form>
@@ -142,6 +132,5 @@ function Register() {
 </>
     )
 }
-
 
 export default Register

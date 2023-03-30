@@ -30,7 +30,7 @@ function App() {
             <Routes>
               <>
                 {/* initial routes */}
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Index />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 {/* patient routes */}
@@ -38,7 +38,7 @@ function App() {
                 <Route path="/medications" element={<Medications />} />
                 <Route path="/newrequest" element={<NewRequest />} />
                 <Route path="/notes" element={<Notes />} />
-                <Route path="/index" element={<Index />} />
+                <Route path="/home" element={<Home />} />
                 <Route path="/requests" element={<Requests />} />
                 {/* staff routes */}
                 <Route path="/staffhome" element={<StaffHome />} />

@@ -1,6 +1,4 @@
-// component to return a table of prescriptions of a patient
-
-import { Text, View } from 'react-native'
+// Patient Prescriptions
 import React, { Component } from 'react'
 
 export class MedicationTable extends Component {
@@ -22,9 +20,7 @@ export class MedicationTable extends Component {
                 <td>{medication.doctor}</td>
                 <td>{medication.instructions}</td>
             </tr>
-            
         </table>
-
       </div>
     )
   }

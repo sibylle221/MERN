@@ -14,8 +14,7 @@ function NoteItem( {note}) {
     p = {4}
     m = {4}
     rounded = {'md'}
-    color = {'black'}
-    >
+    color = {'black'}>
     <div className= "note">
         <div>
             {new Date(note.createdAt).toLocaleDateString('en-GB')}
@@ -27,12 +26,9 @@ function NoteItem( {note}) {
         </h2>
         <br></br>
         <Button
-        // bg={'#5FA7CF'}
         border = {'2px'}
-
         color = {'gray.600'}
-        onClick = { () => dispatch(deleteNote(note._id))}
-        >
+        onClick = { () => dispatch(deleteNote(note._id))}>
             Delete
             </Button>
         </div>

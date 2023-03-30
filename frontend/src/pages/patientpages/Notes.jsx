@@ -14,9 +14,7 @@ function Notes() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
     const { user } = useSelector((state) => state.auth)
-
     const { notes, isLoading, isError, message } = useSelector((state) => state.notes)
 
     useEffect(() => {
@@ -43,17 +41,13 @@ function Notes() {
     <>
     <Box
     color={'#5FA7CF '}
-    fontWeight={'bold'}
-    >
+    fontWeight={'bold'}>
         <LogoSmall />
-
-
     <section className="heading">
         <h1>Status Updates</h1>
         <p>How are you feeling?</p>
     </section>
     <NoteForm />
-
     <section className="content">
         {notes.length > 0 ? (
             <div className = "notes"> 

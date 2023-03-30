@@ -7,7 +7,7 @@ function Logo() {
   const navigate = useNavigate();
   return (
     <div>
-      <button onClick={() => navigate(-1)}>
+      <button onClick={() => navigate("/home")}>
         <img src={logo} />
       </button>
       <Text 

@@ -1,6 +1,5 @@
 import React from 'react'
 import {useDispatch} from 'react-redux'
-import { deleteMedication } from '../features/medications/medicationSlice'
 
 function MedicationItem( {medication}) {
     const dispatch = useDispatch()
@@ -23,10 +22,6 @@ function MedicationItem( {medication}) {
             </tr>
         </table>
         <br></br>
-        
-        {/* <button onClick = { () => dispatch(deleteMedication(medication._id))}className="delete">
-            Delete
-            </button> */}
         </div>
   )
 }

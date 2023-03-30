@@ -5,7 +5,6 @@ import { createNote } from '../features/notes/noteSlice'
 import { Button, Text, Box } from '@chakra-ui/react'
 
 function NoteForm() {
-
     const onSubmit = e => {
         e.preventDefault()
         dispatch(createNote({text}))
@@ -17,21 +16,18 @@ function NoteForm() {
     const dispatch = useDispatch()
 
   return <Box
-  color = {'black'}
-  >
+  color = {'black'}>
   <section className='form'>
         <form onSubmit={onSubmit}>
             <div className='form-group'>
                 <Text 
                 color = {'black'}
-                align = {'left'}
-                >
+                align = {'left'}>
                     Status
                 </Text>
 
                 <input type='text' name='text' id='text' value = {text}
                     onChange = {(e) => setText (e.target.value)} />
-                
             </div>
             <div className="form-group">
 
@@ -42,14 +38,10 @@ function NoteForm() {
                 >
                     Add Status
                     </Button>              
-                {/* <button type="submit" className="btn btn-block">Add note</button> */}
             </div>
         </form>
-        
          </section>
          </Box>
-
-  
 }
 
 export default NoteForm

@@ -12,12 +12,9 @@ function AllRequests() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
     const { user } = useSelector((state) => state.auth)
-
     //make requests get all requests
     const { requests, isLoading, isError, message } = useSelector((state) => state.requests)
-    
     console.log(AllRequests,"AllRequests")
 
     useEffect(() => {
@@ -45,8 +42,7 @@ function AllRequests() {
     <Box
     bg={'#5FA7CF'}
     color = {'white'}
-    fontWeight = {'bold'}
-    >
+    fontWeight = {'bold'}>
     <section className="heading">
         <h1>Manage Requests</h1>
         <p>How can we help you today?</p>
@@ -64,9 +60,7 @@ function AllRequests() {
 </section>
 </Box>
     </>
-
   )
-
 }
 
 export default AllRequests

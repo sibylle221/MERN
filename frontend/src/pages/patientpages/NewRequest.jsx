@@ -1,4 +1,3 @@
-
 import {
     Box,
     Heading,
@@ -6,25 +5,20 @@ import {
     Text,
     Button,
     Stack,
-    Icon,
-    useColorModeValue,
-    createIcon,
   } from '@chakra-ui/react';
-  import { useSelector, useDispatch } from 'react-redux'
-  import  LogoSmall from '../../styling/LogoSmall';
-  import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
-  import { Link, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import  LogoSmall from '../../styling/LogoSmall';
+import { useNavigate } from 'react-router-dom'
 import React from 'react'
-  import { useEffect } from 'react'
-  
+import { useEffect } from 'react'
+import water from "../../assets/images/water.svg";
+import toilet from "../../assets/images/toilet.svg";
+import medications from "../../assets/images/medications.svg";
+import staff from "../../assets/images/staff.svg";
 import { useState } from 'react'
-import RequestItemS from '../../components/RequestItemStyled';
 import RequestFormS from '../../components/RequestFormStyled';
-  import Spinner from '../../components/Spinner'
-  import { toast } from 'react-toastify'
-  import { getRequests, reset, createRequest } from '../../features/requests/requestSlice'
-import { createReducer } from '@reduxjs/toolkit';
-//   import RequestItem from '../components/RequestItem'
+import { toast } from 'react-toastify'
+import { getRequests, reset, createRequest } from '../../features/requests/requestSlice'
 
 
   export default function CallToActionWithAnnotation() {
@@ -48,7 +42,21 @@ import { createReducer } from '@reduxjs/toolkit';
     
     const [text, setText ] = useState('')
 
-
+    useEffect(() => {
+      if(isError) {
+          toast.error(message)
+      }
+      if(!user) {
+          navigate('/login')
+      }
+  
+      dispatch(getRequests())
+  
+      return () => {
+          dispatch(reset())
+      }
+  
+  }, [user, navigate, dispatch, isError, message])
     return (
       <>
 
@@ -71,32 +79,15 @@ import { createReducer } from '@reduxjs/toolkit';
                 New Request
                 </Text>
             </Heading>
-    
-  
-            <Stack
-              
-            //   width={'full'}
-            //   height = {'full'}
+            <Stack            
               alignItems={'center'}
               spacing={4}
-            //   display = {'flex'}
-            //   alignSelf={'center'}
-            //   columnGap = {10}
-            //   position={'relative'}
-            //   margin = {'auto'}
-            //   padding = {'auto'}
-            display = {'flex'}
-            
-
-              >
-  
+              display = {'flex'}>
             <Button
-
              onClick = {(e) => {
                 handleButtonClick('Water');
                 setText (e.target.value)
             }}
-
                 colorScheme={'blue'}
                 width = {250}
                 height = {100}
@@ -109,8 +100,9 @@ import { createReducer } from '@reduxjs/toolkit';
                 py = {'10'}
                 _hover={{
                   bg: '#B9E9FF',
-                }}>
+                }}> 
               Water
+              <img src={water} width="30" height="30" alt="water" padding = {'10%'} />
             </Button>
  
             <Button
@@ -132,6 +124,7 @@ import { createReducer } from '@reduxjs/toolkit';
                   bg: '#B9E9FF',
                 }}>
               Toileting
+              <img src={toilet} width="70" height="70" alt="water" margin = {'10px'} />
             </Button>
             <Button
              onClick = {(e) => {
@@ -152,6 +145,7 @@ import { createReducer } from '@reduxjs/toolkit';
                   bg: '#B9E9FF',
                 }}>
               Pain Relief
+              <img src={medications} width="40" height="40" alt="water" padding = {'10%'} />
             </Button>
 
             <Button
@@ -174,17 +168,14 @@ import { createReducer } from '@reduxjs/toolkit';
                 }}>
               Mobility <br/>
               Assistance
+              <img src={staff} width="50" height="50" alt="water" padding = {'10%'} />
             </Button>
 
             < RequestFormS />
-
-
             </Stack>
           </Stack>
         </Container>
-
       </>
-     
     );
   }
   

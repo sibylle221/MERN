@@ -16,65 +16,59 @@ function StaffHome() {
 
     return (
       <Box
-      color={'#5FA7CF'}
-      
-
-      >
+      color={'#5FA7CF'}>
         <Logo/>
         <br></br>
-<Button onClick={() => navigate('/requestsstaff')}
-colorScheme={'blue'}
-bg={'#D8F3FF'}
-rounded={'10px'}
-color = {'#5FA7CF'}    
-fontSize={'2xl'}
-margin = {'10px'}
-px={10}
-py = {10}
-_hover={{
-  bg: '#B9E9FF',
-}}>
+        <Button onClick={() => navigate('/requestsstaff')}
+        colorScheme={'blue'}
+        bg={'#D8F3FF'}
+        rounded={'10px'}
+        color = {'#5FA7CF'}    
+        fontSize={'2xl'}
+        margin = {'10px'}
+        px={10}
+        py = {10}
+        _hover={{
+            bg: '#B9E9FF',
+        }}>
+        Manage Accepted Requests
+        </Button>
+        <br></br>
 
-Manage Accepted Requests</Button>
-<br></br>
-<Button onClick={() => navigate('/prescribe')}
- colorScheme={'blue'}
- bg={'#D8F3FF'}
- rounded={'10px'}
- color = {'#5FA7CF'}    
- fontSize={'2xl'}
-margin = {'10px'}
- px={10}
- py = {10}
- _hover={{
-   bg: '#B9E9FF',
- }}>
+        <Button onClick={() => navigate('/prescribe')}
+         colorScheme={'blue'}
+        bg={'#D8F3FF'}
+        rounded={'10px'}
+        color = {'#5FA7CF'}    
+        fontSize={'2xl'}
+        margin = {'10px'}
+        px={10}
+        py = {10}
+        _hover={{
+        bg: '#B9E9FF',
+        }}>
 
-Prescribe</Button>
+        Prescribe</Button>
 
-<br></br>
-<Button fontSize = {'2xl'} variant={'link'} colorScheme={'blue'} size={''}       
+        <br></br>
+        <Button fontSize = {'2xl'} variant={'link'} colorScheme={'blue'} size={''}       
                            
-                     bg={'#D8F3FF'}
-                     rounded={'full'}
-                     color = {'#5FA7CF'}    
-                    px={5}
-                     py = {2}
-                     margin = {'10px'}
-                     _hover={{
-                       bg: '#B9E9FF',
-                     }}
-                     onClick = {() => {
-                      onLogout()
-                     }}
-                     
-       >
-         Logout
+        bg={'#D8F3FF'}
+        rounded={'full'}
+        color = {'#5FA7CF'}    
+        px={5}
+        py = {2}
+        margin = {'10px'}
+        _hover={{
+        bg: '#B9E9FF',
+        }}
+        onClick = {() => {
+           onLogout()
+        }}>
+        Logout
        </Button>
-{/* <Button onClick={() => navigate('/allrequests')}>Patients</Button> */}
       </Box>
     )
   }
 
-// 
 export default StaffHome

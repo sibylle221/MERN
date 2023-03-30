@@ -2,22 +2,19 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import RequestForm from '../../components/oldcomponents/RequestForm'
 import Spinner from '../../components/Spinner'
 import { toast } from 'react-toastify'
 import { getRequests, reset } from '../../features/requests/requestSlice'
 import RequestItemStaff from '../../components/RequestItemStaff'
 import RequestItemStaffPend  from '../../components/RequestItemStaffPend'
 import Logo from '../../styling/Logo'
-import { Heading, Box, Button, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 
 function Requests() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
     const { user } = useSelector((state) => state.auth)
-
     const { requests, isLoading, isError, message } = useSelector((state) => state.requests)
 
     useEffect(() => {
@@ -44,10 +41,7 @@ function Requests() {
     <>
     <Box
     fontWeight={'bold'}
-    color = {'#5FA7CF'}
-    >
-
-
+    color = {'#5FA7CF'} >
     <Logo/>
     <section className="heading">
         <h1>Manage Patient Requests</h1>
@@ -62,9 +56,7 @@ function Requests() {
         {user && user.role === 'staff' && (	
         <div className="container">	
             <div className="row">	
-                <div className="col-md-6 offset-md-3">	
-                    
-                    
+                <div className="col-md-6 offset-md-3">	            
     <section className="content">
   {requests.filter(request => request.status === "active").length > 0 ? (
     <div className="requests">
@@ -84,8 +76,6 @@ function Requests() {
         >In Progress Requests:  
         </Text>
 <section className="pending">
-
-
         
         {requests.filter(request => request.status === "pending").length > 0 ? (
           <div>
@@ -123,7 +113,6 @@ function Requests() {
             </div>	
         </div>	
     )}	
-        
         </Box>
     </>
   )

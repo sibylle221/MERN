@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { cancelRequest, deleteRequest } from '../features/requests/requestSlice';
 import { Button, Text, Box } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
 
 function RequestItemS({ request }) {
   const dispatch = useDispatch();
@@ -20,15 +19,16 @@ function RequestItemS({ request }) {
     }
   };
 
-  const onDelete = async () => {
-    try {
-      await dispatch(deleteRequest(request._id)).unwrap();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // if you want a button to permanently delete a request
+  // const onDelete = async () => {
+  //   try {
+  //     await dispatch(deleteRequest(request._id)).unwrap();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const navigate = useNavigate();
+
   return (
     <Box
       className="request"

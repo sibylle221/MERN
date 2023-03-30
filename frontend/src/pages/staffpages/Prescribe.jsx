@@ -5,8 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Spinner from '../../components/Spinner'
 import { toast } from 'react-toastify'
 import { getMedications, reset } from '../../features/medications/medicationSlice'
-import MedicationForm from '../../components/MedicationForm'
-import { Text, Box, Table, Tr, Th, Td,  } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import LogoSmall from '../../styling/LogoSmall'
 import MedicationFormS from '../../components/MedicationForm'
 
@@ -14,9 +13,7 @@ function PrescribeS() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
     const { user } = useSelector((state) => state.auth)
-
     const { medications, isLoading, isError, message } = useSelector((state) => state.medications)
 
     useEffect(() => {
@@ -42,9 +39,8 @@ function PrescribeS() {
   return (
     <>
         <Box 
-    color = {'#5FA7CF'}
-    fontWeight = {'bold'}
-    >
+        color = {'#5FA7CF'}
+        fontWeight = {'bold'}>
 
         <LogoSmall/>
     <section className="heading">
@@ -52,7 +48,7 @@ function PrescribeS() {
         <p>Prescribe New Medication</p>
     </section>
 
-      {/* only return if user is admin else display error#	 */}
+      {/* only return if user is admin else display error */}
       {user && user.role === 'staff' && (	
         <div className="container">	
             <div className="row">	
@@ -83,8 +79,6 @@ function PrescribeS() {
             </div>	
         </div>	
     )}	
-
-
     </Box>
     </>
   )

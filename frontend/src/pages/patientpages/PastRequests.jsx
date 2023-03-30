@@ -2,7 +2,6 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import RequestForm from '../../components/oldcomponents/RequestForm'
 import Spinner from '../../components/Spinner'
 import { toast } from 'react-toastify'
 import { getRequests, reset } from '../../features/requests/requestSlice'
@@ -15,9 +14,7 @@ function PastRequests() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
     const { user } = useSelector((state) => state.auth)
-
     const { requests, isLoading, isError, message } = useSelector((state) => state.requests)
 
     useEffect(() => {
@@ -42,7 +39,6 @@ function PastRequests() {
 
   return (
     <>
-    
     <Heading
               fontWeight={600}
               fontSize={{ base: '2xl', sm: '2xl', md: '2xl' }}
@@ -58,8 +54,6 @@ function PastRequests() {
 
         <p>Old requests that have been completed or cancelled</p>
     </section>
-
-
     <section className="content">
   {requests.filter(request => request.status !== "active").length > 0 ? (
     <div className="requests">

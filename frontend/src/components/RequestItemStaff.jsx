@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { pendingRequest, activateRequest } from '../features/requests/requestSlice';
+import { pendingRequest } from '../features/requests/requestSlice';
 import { Button, Text, Box } from '@chakra-ui/react';
 
 
@@ -22,22 +22,6 @@ function RequestItemStaff({request}) {
       }
   }
 
-  // staff cancels request
-  const onActivate = async () => {
-      try {
-          const updatedRequest = await dispatch(activateRequest({
-              id: request._id,
-              status: 'active'
-          })).unwrap();
-          setStatus(updatedRequest.status);
-      } catch (error) {
-          console.log(error);
-      }
-  }
-
-
-
-
   return (
     <Box
       className="request"
@@ -47,8 +31,7 @@ function RequestItemStaff({request}) {
       color="#5FA7CF"
       _hover={{ bg: '#B9E9FF' }}
       p="10px"
-      m="10px"
-    >
+      m="10px">
 
 <Text
         fontSize="2xl"
@@ -58,8 +41,7 @@ function RequestItemStaff({request}) {
         size="sm"
         fontWeight="bold"
         textAlign="left"
-        paddingLeft="10px"
-      >
+        paddingLeft="10px">
         Request: {request.status}
         <Text fontSize="sm" fontWeight="bold" letterSpacing="wide" textTransform="uppercase" mb={2}>
           Submission Time: {new Date(request.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -70,8 +52,6 @@ function RequestItemStaff({request}) {
 <br></br>
 
     <div className="request">
-
- 
         <Button
         showif={status === 'pending'}
         onClick={
@@ -84,12 +64,9 @@ function RequestItemStaff({request}) {
         color="#5FA7CF"
         bgColor="white"
         _hover={{ bg: '#B9E9FF' }}
-        display="inline-block"
-      >
+        display="inline-block" >
         Accept
       </Button>
-
-      
        
     </div>
     </Box>
